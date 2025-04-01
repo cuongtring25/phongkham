@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Nha Khoa | DentalCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+       /* Blog Styles */
+.blog-header {
+    background-color: var(--muted);
+    margin-top: 76px;
+}
+
+.blog-post {
+    transition: transform 0.3s ease;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.blog-post:hover {
+    transform: translateY(-5px);
+}
+
+.blog-post .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-post .card-title {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.blog-post .card-text {
+    color: var(--foreground);
+    margin-bottom: 1.5rem;
+}
+
+.sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar .nav-link {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    color: var(--foreground);
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover, 
+.sidebar .nav-link.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.sidebar .nav-link:hover i, 
+.sidebar .nav-link.active i {
+    color: white;
+}
+
+.featured-post h5 {
+    color: var(--primary);
+}
+
+.featured-big .card {
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.featured-big .card-title {
+    color: var(--primary);
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.page-link {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .blog-header {
+        padding: 60px 0;
+    }
+    
+    .sidebar {
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .featured-big .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Blog Header Styles */
+.blog-header {
+    background-color: var(--muted);
+    margin-top: 76px;
+    position: relative;
+    z-index: 1;
+}
+
+.blog-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(240,248,255,0.9), rgba(230,243,255,0.9));
+    z-index: -1;
+}
+
+.blog-header h1 {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top animate__animated animate__fadeInDown">
+    <div class="container">
+        <a class="navbar-brand text-primary d-flex align-items-center" href="homepage.html">
+            <i class="bi bi-tooth fs-2 me-2"></i>
+            <span class="brand-text">DentalCare</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="dichvu.html">Dịch Vụ</a></li>
+                <li class="nav-item"><a class="nav-link" href="bacsi.html">Bác Sĩ</a></li>
+                <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="vechungtoi.html">Về Chúng Tôi</a></li>
+                <li class="nav-item position-relative">
+                    <a class="nav-link" href="#notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-5"></i> Tài Khoản
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#profile">Hồ Sơ</a></li>
+                        <li><a class="dropdown-item" href="#appointments">Lịch Hẹn</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#logout">Đăng Xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Blog Header -->
+<section class="blog-header py-5 position-relative overflow-hidden">
+    <!-- Background Image with Blur -->
+    <div class="position-absolute top-0 start-0 w-100 h-100">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" 
+             alt="Background" 
+             class="w-100 h-100 object-fit-cover"
+             style="filter: blur(3px); opacity: 0.3;">
+    </div>
+    
+    <div class="container text-center position-relative">
+        <h1 class="display-4 fw-bold mb-3" style="color: #3592aa;">Kiến Thức Nha Khoa</h1>
+        <p class="lead">Cập nhật những thông tin mới nhất về chăm sóc răng miệng và sức khỏe</p>
+    </div>
+</section>
+
+<!-- Blog Content -->
+<section class="blog-content py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 mb-4">
+                <div class="sidebar bg-white p-4 rounded-4 shadow-sm">
+                    <h4 class="text-primary mb-4">Danh Mục</h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2">
+                            <a class="nav-link active d-flex align-items-center" href="#">
+                                <i class="bi bi-chevron-right me-2"></i> Tất Cả
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center" href="#">
+                                <i class="bi bi-chevron-right me-2"></i> Chăm Sóc Răng Miệng
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center" href="#">
+                                <i class="bi bi-chevron-right me-2"></i> Điều Trị Nha Khoa
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center" href="#">
+                                <i class="bi bi-chevron-right me-2"></i> Thẩm Mỹ Nha Khoa
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center" href="#">
+                                <i class="bi bi-chevron-right me-2"></i> Kiến Thức Chung
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    <h4 class="text-primary mt-5 mb-4">Bài Viết Nổi Bật</h4>
+                    <div class="featured-post mb-3">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" alt="Featured Post" class="img-fluid rounded-3 mb-2">
+                        <h5 class="mb-1">Cách Chăm Sóc Răng Miệng Đúng Cách</h5>
+                        <small class="text-muted"><i class="bi bi-calendar me-1"></i> 15/04/2024</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <!-- Featured Post -->
+                <div class="featured-big mb-5">
+                    <div class="card border-0 shadow-sm">
+                        <div class="row g-0">
+                            <div class="col-md-6">
+                                <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" class="img-fluid rounded-start h-100" alt="Featured Post">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card-body p-4">
+                                    <span class="badge bg-primary mb-2">Nổi Bật</span>
+                                    <h2 class="card-title">Cách Chăm Sóc Răng Miệng Đúng Cách</h2>
+                                    <p class="card-text">Bài viết này sẽ hướng dẫn bạn cách chăm sóc răng miệng đúng cách hàng ngày để có hàm răng khỏe mạnh và nụ cười tự tin...</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted"><i class="bi bi-calendar me-1"></i> 15/04/2024</small>
+                                        <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Posts -->
+                <div class="row g-4">
+                    <!-- Post 1 -->
+                    <div class="col-md-4">
+                        <div class="card blog-post h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">Chăm Sóc Răng Miệng</span>
+                                <h5 class="card-title">5 Sai Lầm Khi Đánh Răng Bạn Cần Tránh</h5>
+                                <p class="card-text">Nhiều người vẫn mắc phải những sai lầm cơ bản khi đánh răng hàng ngày mà không hề hay biết...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"><i class="bi bi-calendar me-1"></i> 10/04/2024</small>
+                                    <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 2 -->
+                    <div class="col-md-4">
+                        <div class="card blog-post h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">Thẩm Mỹ Nha Khoa</span>
+                                <h5 class="card-title">Tẩy Trắng Răng: Phương Pháp Nào Tốt Nhất?</h5>
+                                <p class="card-text">So sánh các phương pháp tẩy trắng răng phổ biến hiện nay và lựa chọn phù hợp nhất với bạn...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"><i class="bi bi-calendar me-1"></i> 05/04/2024</small>
+                                    <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 3 -->
+                    <div class="col-md-4">
+                        <div class="card blog-post h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">Điều Trị Nha Khoa</span>
+                                <h5 class="card-title">Niềng Răng Trong Suốt - Giải Pháp Cho Người Trưởng Thành</h5>
+                                <p class="card-text">Niềng răng trong suốt đang trở thành xu hướng cho người trưởng thành muốn cải thiện hàm răng...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"><i class="bi bi-calendar me-1"></i> 01/04/2024</small>
+                                    <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 4 -->
+                    <div class="col-md-4">
+                        <div class="card blog-post h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">Kiến Thức Chung</span>
+                                <h5 class="card-title">Mối Liên Hệ Giữa Sức Khỏe Răng Miệng Và Toàn Thân</h5>
+                                <p class="card-text">Nghiên cứu cho thấy sức khỏe răng miệng có liên quan mật thiết đến nhiều vấn đề sức khỏe khác...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"><i class="bi bi-calendar me-1"></i> 25/03/2024</small>
+                                    <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 5 -->
+                    <div class="col-md-4">
+                        <div class="card blog-post h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">Chăm Sóc Răng Miệng</span>
+                                <h5 class="card-title">Chọn Bàn Chải Và Kem Đánh Răng Phù Hợp</h5>
+                                <p class="card-text">Hướng dẫn chi tiết cách lựa chọn bàn chải và kem đánh răng phù hợp với từng loại răng...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"><i class="bi bi-calendar me-1"></i> 20/03/2024</small>
+                                    <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Post 6 -->
+                    <div class="col-md-4">
+                        <div class="card blog-post h-100 border-0 shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95" class="card-img-top" alt="Blog Post">
+                            <div class="card-body">
+                                <span class="badge bg-secondary mb-2">Điều Trị Nha Khoa</span>
+                                <h5 class="card-title">Giải Đáp Thắc Mắc Về Nhổ Răng Khôn</h5>
+                                <p class="card-text">Nhổ răng khôn có đau không? Cần chuẩn bị gì trước khi nhổ răng khôn? Tất cả sẽ được giải đáp...</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted"><i class="bi bi-calendar me-1"></i> 15/03/2024</small>
+                                    <a href="#" class="btn btn-sm btn-primary">Đọc Tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <nav class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Trước</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Tiếp</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer-section py-5 mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- About Us -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp">
+                <h4 class="text-primary">DentalCare</h4>
+                <p>Đối tác đáng tin cậy cho sức khỏe răng miệng và nụ cười rạng rỡ.</p>
+                <div class="social-links">
+                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <h5 class="text-secondary">Liên Kết Nhanh</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#services"><i class="bi bi-chevron-right"></i> Dịch Vụ</a></li>
+                    <li><a href="#doctors"><i class="bi bi-chevron-right"></i> Đội Ngũ Bác Sĩ</a></li>
+                    <li><a href="#contact"><i class="bi bi-chevron-right"></i> Về chúng tôi</a></li>
+                    <li><a href="#blog"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+                <h5 class="text-secondary">Thông Tin Liên Hệ</h5>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-geo-alt"></i> 123 Đường Nha Khoa, Thành Phố</li>
+                    <li><i class="bi bi-telephone"></i> +1 234 567 890</li>
+                    <li><i class="bi bi-envelope"></i> info@dentalcare.com</li>
+                    <li><i class="bi bi-clock"></i> Thứ 2 - Thứ 6: 8:00 - 18:00</li>
+                    <li><i class="bi bi-clock"></i> Thứ 7: 8:00 - 12:00</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-5">
+            <div class="col-lg-12 text-center">
+                <p class="mb-0">© 2024 DentalCare. Bảo lưu mọi quyền.</p>
+                <p class="mb-0">Được thiết kế với <i class="bi bi-heart-fill text-danger"></i> bởi <a href="#" class="text-primary">DentalCare Team</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

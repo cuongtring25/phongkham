@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dịch Vụ Nha Khoa | DentalCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        /* Additional CSS for services page */
+        .filter-section {
+            background-color: var(--muted);
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .service-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .service-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+        
+        .service-body {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .service-footer {
+            padding: 15px 20px;
+            background-color: var(--muted);
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        
+        .badge-service {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-detail {
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-detail:hover {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+        
+        .highlight {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        /* Filter button styles */
+        .btn-filter {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-filter:hover {
+            background-color: var(--secondary);
+        }
+        
+        .btn-filter.active {
+            background-color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar (same as homepage) -->
+<nav class="navbar navbar-expand-lg fixed-top animate__animated animate__fadeInDown">
+    <div class="container">
+        <a class="navbar-brand text-primary d-flex align-items-center" href="homepage.html">
+            <i class="bi bi-tooth fs-2 me-2"></i>
+            <span class="brand-text">DentalCare</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                <li class="nav-item"><a class="nav-link active" href="dichvu.html">Dịch Vụ</a></li>
+                <li class="nav-item"><a class="nav-link" href="bacsi.html">Bác sĩ</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="vechungtoi.html">Về Chúng Tôi</a></li>
+                <li class="nav-item position-relative">
+                    <a class="nav-link" href="#notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-5"></i> Tài Khoản
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#profile">Hồ Sơ</a></li>
+                        <li><a class="dropdown-item" href="#appointments">Lịch Hẹn</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#logout">Đăng Xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Services Section -->
+<section class="services-section py-5">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bold">Dịch Vụ Nha Khoa</h1>
+                <p class="lead">Chăm sóc toàn diện cho nụ cười của bạn</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <!-- Filter Dropdown -->
+                <div class="dropdown">
+                    <button class="btn btn-filter dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown">
+                        <i class="bi bi-funnel"></i> Lọc Dịch Vụ
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item filter-btn active" data-filter="all">Tất cả dịch vụ</button></li>
+                        <li><button class="dropdown-item filter-btn" data-filter="preventive">Phòng ngừa</button></li>
+                        <li><button class="dropdown-item filter-btn" data-filter="cosmetic">Thẩm mỹ</button></li>
+                        <li><button class="dropdown-item filter-btn" data-filter="restorative">Phục hồi</button></li>
+                        <li><button class="dropdown-item filter-btn" data-filter="orthodontic">Chỉnh nha</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="row" id="services-container">
+            <!-- Service 1 -->
+            <div class="col-lg-4 col-md-6 service-item" data-category="preventive">
+                <div class="service-card shadow-sm rounded">
+                    <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95" class="service-img" alt="Làm Sạch Răng">
+                    <div class="service-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h3>Làm Sạch Răng</h3>
+                            <span class="badge badge-service">Phòng ngừa</span>
+                        </div>
+                        <p class="mt-2">Làm sạch chuyên nghiệp giúp loại bỏ mảng bám và cao răng, ngăn ngừa sâu răng và bệnh nướu.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle highlight"></i> Không đau</li>
+                            <li><i class="bi bi-check-circle highlight"></i> 30-45 phút</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Bảo hành 6 tháng</li>
+                        </ul>
+                    </div>
+                    <div class="service-footer d-flex justify-content-between align-items-center">
+                        <span class="price-tag text-secondary">$99</span>
+                        <a href="lamsachrang.html" class="btn btn-detail rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="col-lg-4 col-md-6 service-item" data-category="cosmetic">
+                <div class="service-card shadow-sm rounded">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09" class="service-img" alt="Tẩy Trắng Răng">
+                    <div class="service-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h3>Tẩy Trắng Răng</h3>
+                            <span class="badge badge-service">Thẩm mỹ</span>
+                        </div>
+                        <p class="mt-2">Công nghệ tẩy trắng hiện đại giúp răng trắng sáng hơn từ 3-8 tông màu chỉ sau 1 lần điều trị.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle highlight"></i> Hiệu quả ngay</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Không ê buốt</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Duy trì 1-2 năm</li>
+                        </ul>
+                    </div>
+                    <div class="service-footer d-flex justify-content-between align-items-center">
+                        <span class="price-tag text-secondary">$199</span>
+                        <a href="dichvu-chitiet.html?id=2" class="btn btn-detail rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="col-lg-4 col-md-6 service-item" data-category="preventive">
+                <div class="service-card shadow-sm rounded">
+                    <img src="https://images.unsplash.com/photo-1628777222379-bcc696ddc4c6" class="service-img" alt="Kiểm Tra Răng">
+                    <div class="service-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h3>Kiểm Tra Răng</h3>
+                            <span class="badge badge-service">Phòng ngừa</span>
+                        </div>
+                        <p class="mt-2">Kiểm tra toàn diện sức khỏe răng miệng, phát hiện sớm các vấn đề và đề xuất giải pháp điều trị.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle highlight"></i> Chụp X-quang</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Đánh giá toàn diện</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Tư vấn miễn phí</li>
+                        </ul>
+                    </div>
+                    <div class="service-footer d-flex justify-content-between align-items-center">
+                        <span class="price-tag text-secondary">$79</span>
+                        <a href="dichvu-chitiet.html?id=3" class="btn btn-detail rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="col-lg-4 col-md-6 service-item" data-category="restorative">
+                <div class="service-card shadow-sm rounded">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" class="service-img" alt="Trám Răng">
+                    <div class="service-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h3>Trám Răng</h3>
+                            <span class="badge badge-service">Phục hồi</span>
+                        </div>
+                        <p class="mt-2">Trám răng thẩm mỹ bằng composite giúp phục hồi răng sâu, răng sứt mẻ với màu sắc tự nhiên.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle highlight"></i> Vật liệu cao cấp</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Không đau</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Bền 5-7 năm</li>
+                        </ul>
+                    </div>
+                    <div class="service-footer d-flex justify-content-between align-items-center">
+                        <span class="price-tag text-secondary">$120</span>
+                        <a href="dichvu-chitiet.html?id=4" class="btn btn-detail rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="col-lg-4 col-md-6 service-item" data-category="orthodontic">
+                <div class="service-card shadow-sm rounded">
+                    <img src="https://images.unsplash.com/photo-1564420228450-d4f0cb3dda1a" class="service-img" alt="Niềng Răng">
+                    <div class="service-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h3>Niềng Răng</h3>
+                            <span class="badge badge-service">Chỉnh nha</span>
+                        </div>
+                        <p class="mt-2">Giải pháp chỉnh nha toàn diện giúp điều chỉnh răng lệch lạc, hô móm mang lại nụ cười hoàn hảo.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle highlight"></i> Đa dạng phương pháp</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Bác sĩ chuyên sâu</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Thanh toán linh hoạt</li>
+                        </ul>
+                    </div>
+                    <div class="service-footer d-flex justify-content-between align-items-center">
+                        <span class="price-tag text-secondary">$1,500+</span>
+                        <a href="dichvu-chitiet.html?id=5" class="btn btn-detail rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="col-lg-4 col-md-6 service-item" data-category="cosmetic">
+                <div class="service-card shadow-sm rounded">
+                    <img src="https://images.unsplash.com/photo-1621347466161-89ede46552e1" class="service-img" alt="Dán Sứ Veneer">
+                    <div class="service-body">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <h3>Dán Sứ Veneer</h3>
+                            <span class="badge badge-service">Thẩm mỹ</span>
+                        </div>
+                        <p class="mt-2">Giải pháp thẩm mỹ cao cấp giúp cải thiện hình dáng, màu sắc răng mà không cần mài nhiều răng thật.</p>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle highlight"></i> Mỏng 0.3-0.5mm</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Màu sắc tự nhiên</li>
+                            <li><i class="bi bi-check-circle highlight"></i> Tuổi thọ 10-15 năm</li>
+                        </ul>
+                    </div>
+                    <div class="service-footer d-flex justify-content-between align-items-center">
+                        <span class="price-tag text-secondary">$500/răng</span>
+                        <a href="dichvu-chitiet.html?id=6" class="btn btn-detail rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer (same as homepage) -->
+<footer class="footer-section py-5 mt-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- About Us -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp">
+                <h4 class="text-primary">DentalCare</h4>
+                <p>Đối tác đáng tin cậy cho sức khỏe răng miệng và nụ cười rạng rỡ.</p>
+                <div class="social-links">
+                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <h5 class="text-secondary">Liên Kết Nhanh</h5>
+                <ul class="list-unstyled">
+                    <li><a href="dichvu.html"><i class="bi bi-chevron-right"></i> Dịch Vụ</a></li>
+                    <li><a href="#doctors"><i class="bi bi-chevron-right"></i> Đội Ngũ Bác Sĩ</a></li>
+                    <li><a href="vechungtoi.html"><i class="bi bi-chevron-right"></i> Về Chúng Tôi</a></li>
+                    <li><a href="blog.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+                <h5 class="text-secondary">Thông Tin Liên Hệ</h5>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-geo-alt"></i> 123 Đường Nha Khoa, Thành Phố</li>
+                    <li><i class="bi bi-telephone"></i> +1 234 567 890</li>
+                    <li><i class="bi bi-envelope"></i> info@dentalcare.com</li>
+                    <li><i class="bi bi-clock"></i> Thứ 2 - Thứ 6: 8:00 - 18:00</li>
+                    <li><i class="bi bi-clock"></i> Thứ 7: 8:00 - 12:00</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-5">
+            <div class="col-lg-12 text-center">
+                <p class="mb-0">© 2024 DentalCare. Bảo lưu mọi quyền.</p>
+                <p class="mb-0">Được thiết kế với <i class="bi bi-heart-fill text-danger"></i> bởi <a href="#" class="text-primary">DentalCare Team</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const serviceItems = document.querySelectorAll('.service-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                serviceItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Make service cards clickable
+        serviceItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                // Don't navigate if clicking on buttons or links inside the card
+                if (!e.target.closest('a, button')) {
+                    const link = this.querySelector('a.btn-detail');
+                    if (link) {
+                        window.location.href = link.href;
+                    }
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

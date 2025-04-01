@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Làm Sạch Răng Chuyên Nghiệp | DentalCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .service-hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95') center/cover;
+            padding: 100px 0;
+            margin-bottom: 60px;
+        }
+        
+        .service-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-price {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .service-badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .service-section {
+            margin-bottom: 60px;
+        }
+        
+        .service-section-title {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .service-section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .feature-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .feature-list li:before {
+            content: '\f00c';
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        .gallery-item {
+            margin-bottom: 30px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .doctor-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 3px solid var(--primary);
+        }
+        
+        .btn-consult {
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-consult:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-book {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-book:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .process-step .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: var(--muted);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-header button {
+            width: 100%;
+            text-align: left;
+            padding: 15px 20px;
+            background-color: var(--muted);
+            border: none;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .faq-body {
+            padding: 20px;
+            background-color: white;
+        }
+        
+        /* Additional CSS for the updated booking form */
+        .form-check {
+            margin-bottom: 10px;
+        }
+
+        .form-check-label {
+            margin-left: 5px;
+        }
+
+        .form-label span.text-danger {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-hero {
+                padding: 60px 0;
+            }
+            
+            .service-title {
+                font-size: 2rem;
+            }
+            
+            .btn-consult, .btn-book {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        .btn-detail {
+        border-color: var(--primary);
+        color: var(--primary);
+        transition: all 0.3s ease;
+        }
+
+    .btn-detail:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: white;
+        }
+        .cta-section {
+    background-color: var(--primary);
+    padding: 60px 0;
+    color: white;
+}
+    </style>
+</head>
+<body>
+
+<!-- Navbar (same as other pages) -->
+<nav class="navbar navbar-expand-lg fixed-top animate__animated animate__fadeInDown">
+    <div class="container">
+        <a class="navbar-brand text-primary d-flex align-items-center" href="index.html">
+            <i class="bi bi-tooth fs-2 me-2"></i>
+            <span class="brand-text">DentalCare</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="dichvu.html">Dịch Vụ</a></li>
+                <li class="nav-item"><a class="nav-link" href="bacsi.html">Bác sĩ</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="vechungtoi.html">Về Chúng Tôi</a></li>
+                <li class="nav-item position-relative">
+                    <a class="nav-link" href="#notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-5"></i> Tài Khoản
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#profile">Hồ Sơ</a></li>
+                        <li><a class="dropdown-item" href="#appointments">Lịch Hẹn</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#logout">Đăng Xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="service-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <span class="service-badge">Dịch vụ phòng ngừa</span>
+                <h1 class="service-title">Làm Sạch Răng Chuyên Nghiệp</h1>
+                <p class="lead">Loại bỏ mảng bám và cao răng hiệu quả, ngăn ngừa sâu răng và bệnh nướu với công nghệ hiện đại</p>
+                <div class="d-flex flex-wrap gap-3 mt-4">
+                    <button class="btn btn-consult" data-bs-toggle="modal" data-bs-target="#consultModal">
+                        <i class="bi bi-chat-left-text me-2"></i> Tư vấn ngay
+                    </button>
+                    <button class="btn btn-book" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                        <i class="bi bi-calendar-check me-2"></i> Đặt lịch ngay
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <div class="bg-white p-4 rounded shadow-sm d-inline-block">
+                    <div class="service-price">$99</div>
+                    <small class="text-muted">*Giá có thể thay đổi tùy tình trạng răng</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Service Detail Section -->
+<section class="service-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h2 class="service-section-title">Giới thiệu dịch vụ</h2>
+                <p>Làm sạch răng chuyên nghiệp là quy trình cơ bản nhưng quan trọng nhất trong chăm sóc răng miệng định kỳ. Dịch vụ của chúng tôi sử dụng công nghệ siêu âm hiện đại giúp loại bỏ hoàn toàn cao răng và mảng bám mà không gây tổn thương đến men răng.</p>
+                
+                <h3 class="mt-5 mb-3">Lợi ích khi làm sạch răng định kỳ</h3>
+                <ul class="feature-list">
+                    <li>Ngăn ngừa sâu răng và viêm nướu hiệu quả</li>
+                    <li>Loại bỏ mảng bám và cao răng cứng đầu</li>
+                    <li>Phát hiện sớm các vấn đề răng miệng tiềm ẩn</li>
+                    <li>Giúp hơi thở thơm mát hơn</li>
+                    <li>Bảo vệ men răng và nướu khỏe mạnh</li>
+                    <li>Tiết kiệm chi phí điều trị về lâu dài</li>
+                </ul>
+                
+                <h2 class="service-section-title mt-5">Quy trình thực hiện</h2>
+                <div class="row">
+                    <div class="col-md-4 process-step">
+                        <div class="step-number">1</div>
+                        <h4>Khám tổng quát</h4>
+                        <p>Bác sĩ kiểm tra tổng thể tình trạng răng miệng</p>
+                    </div>
+                    <div class="col-md-4 process-step">
+                        <div class="step-number">2</div>
+                        <h4>Cạo vôi răng</h4>
+                        <p>Sử dụng máy siêu âm loại bỏ cao răng nhẹ nhàng</p>
+                    </div>
+                    <div class="col-md-4 process-step">
+                        <div class="step-number">3</div>
+                        <h4>Đánh bóng</h4>
+                        <p>Làm bóng bề mặt răng với kem đánh bóng chuyên dụng</p>
+                    </div>
+                </div>
+                
+                <h2 class="service-section-title mt-5">Hình ảnh thực tế</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" alt="Trước khi làm sạch">
+                            <div class="p-3 bg-white">
+                                <h5 class="mb-0">Trước khi làm sạch</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" alt="Sau khi làm sạch">
+                            <div class="p-3 bg-white">
+                                <h5 class="mb-0">Sau khi làm sạch</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="service-section-title mt-5">Câu hỏi thường gặp</h2>
+                <div class="accordion" id="faqAccordion">
+                    <div class="faq-item">
+                        <div class="faq-header" id="headingOne">
+                            🙂<button type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Làm sạch răng có đau không?
+                            </button>
+                        </div>
+                        <div id="faq1" class="collapse show" aria-labelledby="headingOne">
+                            <div class="faq-body">
+                                Quy trình làm sạch răng hoàn toàn không đau. Với công nghệ siêu âm hiện đại, bạn chỉ cảm thấy hơi tê nhẹ khi cạo vôi ở những vùng răng nhạy cảm.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-header" id="headingTwo">
+                            <button type="button" data-bs-toggle="collapse" data-bs-target="#faq2" class="collapsed">
+                                Bao lâu nên làm sạch răng một lần?
+                            </button>
+                        </div>
+                        <div id="faq2" class="collapse" aria-labelledby="headingTwo">
+                            <div class="faq-body">
+                                Nha sĩ khuyến cáo nên làm sạch răng định kỳ 6 tháng/lần. Tuy nhiên, với người hút thuốc, uống nhiều cà phê hoặc có tiền sử bệnh nướu, nên thực hiện 3-4 tháng/lần.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-header" id="headingThree">
+                            <button type="button" data-bs-toggle="collapse" data-bs-target="#faq3" class="collapsed">
+                                Sau khi làm sạch cần lưu ý gì?
+                            </button>
+                        </div>
+                        <div id="faq3" class="collapse" aria-labelledby="headingThree">
+                            <div class="faq-body">
+                                <ul>
+                                    <li>Tránh ăn uống đồ quá nóng/lạnh trong 2 giờ đầu</li>
+                                    <li>Hạn chế hút thuốc, uống cà phê, trà đặc trong 24h</li>
+                                    <li>Đánh răng nhẹ nhàng với bàn chải lông mềm</li>
+                                    <li>Sử dụng chỉ nha khoa hàng ngày</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 100px;">
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Thông tin dịch vụ</h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-3 d-flex">
+                                    <i class="bi bi-clock text-primary me-3" style="font-size: 1.2rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">Thời gian</h6>
+                                        <small class="text-muted">30-45 phút</small>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex">
+                                    <i class="bi bi-calendar-check text-primary me-3" style="font-size: 1.2rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">Bảo hành</h6>
+                                        <small class="text-muted">6 tháng</small>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex">
+                                    <i class="bi bi-shield-check text-primary me-3" style="font-size: 1.2rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">An toàn</h6>
+                                        <small class="text-muted">Không đau, không chảy máu</small>
+                                    </div>
+                                </li>
+                                <li class="mb-3 d-flex">
+                                    <i class="bi bi-people text-primary me-3" style="font-size: 1.2rem;"></i>
+                                    <div>
+                                        <h6 class="mb-0">Đối tượng</h6>
+                                        <small class="text-muted">Trẻ em & Người lớn</small>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h4 class="service-section-title">Bác sĩ chuyên khoa</h4>
+                    <div class="doctor-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" class="doctor-img" alt="Bác sĩ Nguyễn Thị Hương">
+                        <h5>Bác sĩ Nguyễn Thị Hương</h5>
+                        <p class="text-muted">Chuyên gia nha chu</p>
+                        <p class="small">15 năm kinh nghiệm trong lĩnh vực chăm sóc răng miệng tổng quát</p>
+                        <button class="btn btn-sm btn-primary">Xem hồ sơ</button>
+                    </div>
+                    
+                    <div class="card shadow-sm border-0 mt-4">
+                        <div class="card-body text-center">
+                            <i class="bi bi-telephone text-primary" style="font-size: 2rem;"></i>
+                            <h5 class="mt-3">Cần tư vấn thêm?</h5>
+                            <p>Liên hệ ngay với chúng tôi để được giải đáp mọi thắc mắc</p>
+                            <a href="tel:+1234567890" class="btn btn-primary w-100">
+                                <i class="bi bi-telephone me-2"></i> 0123 456 789
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="service-section-title">Khách hàng nói gì về chúng tôi</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <p>"Tôi rất hài lòng với dịch vụ làm sạch răng tại DentalCare. Bác sĩ thực hiện rất nhẹ nhàng, không đau như tôi từng nghĩ. Răng tôi sạch sẽ và trắng sáng hơn hẳn."</p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Chị Ngọc Anh">
+                                <div>
+                                    <h6 class="mb-0">Chị Ngọc Anh</h6>
+                                    <small class="text-muted">Khách hàng thân thiết</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <p>"Lần đầu tiên làm sạch răng nhưng trải nghiệm rất tốt. Nhân viên tư vấn nhiệt tình, bác sĩ giải thích rõ từng bước. Tôi sẽ quay lại đều đặn 6 tháng/lần như lời khuyên."</p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Anh Minh Đức">
+                                <div>
+                                    <h6 class="mb-0">Anh Minh Đức</h6>
+                                    <small class="text-muted">Khách hàng mới</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="testimonial-card">
+                            <p>"Con tôi 8 tuổi rất sợ đi nha sĩ, nhưng tại DentalCare các cô đã làm bé thoải mái. Bé còn được tặng sticker sau khi hoàn thành. Cảm ơn đội ngũ rất nhiều!"</p>
+                            <div class="testimonial-author">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Chị Thu Hà">
+                                <div>
+                                    <h6 class="mb-0">Chị Thu Hà</h6>
+                                    <small class="text-muted">Phụ huynh</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Services -->
+<section class="service-section bg-light py-5">
+    <div class="container">
+        <h2 class="service-section-title text-center">Dịch vụ liên quan</h2>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09" class="card-img-top" alt="Tẩy trắng răng">
+                    <div class="card-body">
+                        <h5 class="card-title">Tẩy Trắng Răng</h5>
+                        <p class="card-text">Công nghệ tẩy trắng hiện đại giúp răng trắng sáng hơn từ 3-8 tông màu</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="taytrangrang.html" class="btn btn-outline-primary btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5" class="card-img-top" alt="Trám răng">
+                    <div class="card-body">
+                        <h5 class="card-title">Trám Răng Thẩm Mỹ</h5>
+                        <p class="card-text">Phục hồi răng sâu, răng sứt mẻ với vật liệu composite màu răng tự nhiên</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="tramrang.html" class="btn btn-outline-primary btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <img src="https://images.unsplash.com/photo-1564420228450-d4f0cb3dda1a" class="card-img-top" alt="Khám tổng quát">
+                    <div class="card-body">
+                        <h5 class="card-title">Khám Tổng Quát</h5>
+                        <p class="card-text">Kiểm tra toàn diện sức khỏe răng miệng và tư vấn điều trị chuyên sâu</p>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <a href="khamtongquat.html" class="btn btn-outline-primary btn-detail">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- CTA Section -->
+<section class="cta-section py-5 text-white">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2 class="mb-3">Sẵn sàng cho nụ cười khỏe đẹp?</h2>
+                <p class="mb-lg-0">Đặt lịch hẹn ngay hôm nay để được thăm khám bởi đội ngũ bác sĩ chuyên môn cao</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <button class="btn btn-light btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                    <i class="bi bi-calendar-check me-2"></i> Đặt lịch ngay
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer (same as other pages) -->
+<footer class="footer-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- About Us -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp">
+                <h4 class="text-primary">DentalCare</h4>
+                <p>Đối tác đáng tin cậy cho sức khỏe răng miệng và nụ cười rạng rỡ.</p>
+                <div class="social-links">
+                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <h5 class="text-secondary">Liên Kết Nhanh</h5>
+                <ul class="list-unstyled">
+                    <li><a href="vechungtoi.html"><i class="bi bi-chevron-right"></i> Về Chúng Tôi</a></li>
+                    <li><a href="dichvu.html"><i class="bi bi-chevron-right"></i> Dịch Vụ</a></li>
+                    <li><a href="#doctors"><i class="bi bi-chevron-right"></i> Đội Ngũ Bác Sĩ</a></li>
+                    <li><a href="lienhe.html"><i class="bi bi-chevron-right"></i> Liên Hệ</a></li>
+                    <li><a href="blog.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+                <h5 class="text-secondary">Thông Tin Liên Hệ</h5>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-geo-alt"></i> 123 Đường Nha Khoa, Thành Phố</li>
+                    <li><i class="bi bi-telephone"></i> +1 234 567 890</li>
+                    <li><i class="bi bi-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="13a3d3537363d27323f303221367d303c3e">[email&#160;protected]</a></li>
+                    <li><i class="bi bi-clock"></i> Thứ 2 - Thứ 6: 8:00 - 18:00</li>
+                    <li><i class="bi bi-clock"></i> Thứ 7: 8:00 - 12:00</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-5">
+            <div class=" Wcol-lg-12 text-center">
+                <p class="mb-0">© 2024 DentalCare. Bảo lưu mọi quyền.</p>
+                <p class="mb-0">Được thiết kế với <i class="bi bi-heart-fill text-danger"></i> bởi <a href="#" class="text-primary">DentalCare Team</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Consultation Modal -->
+<div class="modal fade" id="consultModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tư vấn dịch vụ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Số điện thoại</label>
+                        <input type="tel" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Câu hỏi của bạn</label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Gửi yêu cầu tư vấn</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--  Booking Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Đặt Lịch Làm Sạch Răng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form class="booking-form">
+                    <div class="row g-3">
+                        <!-- Họ và Tên -->
+                        <div class="col-md-6">
+                            <label class="form-label">Họ và Tên <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" required placeholder="Nhập họ và tên">
+                        </div>
+                        <!-- Số điện thoại -->
+                        <div class="col-md-6">
+                            <label class="form-label">Số điện thoại <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" required placeholder="Nhập số điện thoại">
+                        </div>
+                        <!-- Email -->
+                        <div class="col-md-6">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" required placeholder="Nhập email">
+                        </div>
+                        <!-- Ngày sinh -->
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày sinh <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <!-- Giới tính -->
+                        <div class="col-md-6">
+                            <label class="form-label">Giới tính <span class="text-danger">*</span></label>
+                            <select class="form-select" required>
+                                <option value="">Chọn giới tính</option>
+                                <option value="male">Nam</option>
+                                <option value="female">Nữ</option>
+                                <option value="other">Khác</option>
+                            </select>
+                        </div>
+                        <!-- Địa chỉ -->
+                        <div class="col-md-6">
+                            <label class="form-label">Địa chỉ</label>
+                            <input type="text" class="form-control" placeholder="Nhập địa chỉ">
+                        </div>
+                        <!-- Ngày hẹn -->
+                        <div class="col-md-6">
+                            <label class="form-label">Ngày hẹn <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <!-- Giờ hẹn -->
+                        <div class="col-md-6">
+                            <label class="form-label">Giờ hẹn <span class="text-danger">*</span></label>
+                            <select class="form-select" required>
+                                <option value="">Chọn khung giờ</option>
+                                <option>8:00 - 9:00</option>
+                                <option>9:00 - 10:00</option>
+                                <option>10:00 - 11:00</option>
+                                <option>13:00 - 14:00</option>
+                                <option>14:00 - 15:00</option>
+                                <option>15:00 - 16:00</option>
+                            </select>
+                        </div>
+                        <!-- Dịch vụ bổ sung -->
+                        <div class="col-md-12">
+                            <label class="form-label">Dịch vụ bổ sung (nếu có)</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="taytrang" id="taytrang">
+                                <label class="form-check-label" for="taytrang">
+                                    Tẩy trắng răng
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="tramrang" id="tramrang">
+                                <label class="form-check-label" for="tramrang">
+                                    Trám răng thẩm mỹ
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="khamtongquat" id="khamtongquat">
+                                <label class="form-check-label" for="khamtongquat">
+                                    Khám tổng quát
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Tình trạng răng miệng -->
+                        <div class="col-md-12">
+                            <label class="form-label">Tình trạng răng miệng hiện tại</label>
+                            <textarea class="form-control" rows="3" placeholder="Mô tả tình trạng răng miệng (nếu có)"></textarea>
+                        </div>
+                        <!-- Ghi chú -->
+                        <div class="col-12">
+                            <label class="form-label">Ghi chú thêm</label>
+                            <textarea class="form-control" rows="3" placeholder="Ghi chú thêm (nếu có)"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary">Xác nhận đặt lịch</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Initialize tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'92965ac19a9eb099',t:'MTc0MzQ5MjM0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

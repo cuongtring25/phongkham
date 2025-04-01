@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đội Ngũ Bác Sĩ | DentalCare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .doctors-hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1579684385127-1ef15d508118') center/cover;
+            padding: 100px 0;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .doctor-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .doctor-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .doctor-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 5px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .doctor-name {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .doctor-specialty {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .doctor-experience {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .experience-badge {
+            background-color: var(--muted);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .doctor-skills {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background-color: var(--muted);
+            color: var(--foreground);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 3px;
+        }
+        
+        .btn-profile {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            margin-top: auto;
+        }
+        
+        .btn-profile:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+        
+        .department-section {
+            margin-bottom: 60px;
+        }
+        
+        .department-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        .expertise-section {
+            background-color: var(--muted);
+            padding: 60px 0;
+            margin-bottom: 60px;
+        }
+        
+        .expertise-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .expertise-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .cta-section {
+            background-color: var(--primary);
+            padding: 60px 0;
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .doctors-hero {
+                padding: 60px 0;
+            }
+            
+            .doctor-img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        /* Style cho nút xem hồ sơ khi hover */
+    .btn-profile:hover {
+        background-color: var(--secondary);
+        border-color: var(--secondary);
+        color: white;
+        transform: translateY(-2px);
+}
+
+    /* Style cho badge kinh nghiệm */
+    .experience-badge {
+        white-space: nowrap;
+        background-color: var(--primary);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: inline-block;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+            
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top animate__animated animate__fadeInDown">
+    <div class="container">
+        <a class="navbar-brand text-primary d-flex align-items-center" href="homepage.html">
+            <i class="bi bi-tooth fs-2 me-2"></i>
+            <span class="brand-text">DentalCare</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="dichvu.html">Dịch Vụ</a></li>
+                <li class="nav-item"><a class="nav-link active" href="bacsi.html">Bác sĩ</a></li>
+                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="vechungtoi.html">Về Chúng Tôi</a></li>
+                <li class="nav-item position-relative">
+                    <a class="nav-link" href="#notifications">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">3</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle fs-5"></i> Tài Khoản
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#profile">Hồ Sơ</a></li>
+                        <li><a class="dropdown-item" href="#appointments">Lịch Hẹn</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#logout">Đăng Xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="doctors-hero">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 mb-4">Đội Ngũ Bác Sĩ Chuyên Môn Cao</h1>
+                <p class="lead">Được đào tạo bài bản và giàu kinh nghiệm, các bác sĩ của chúng tôi luôn sẵn sàng mang đến cho bạn dịch vụ chăm sóc răng miệng tốt nhất</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="department-section">
+    <div class="container">
+        <h2 class="section-title">Bác Sĩ Nha Khoa Tổng Quát</h2>
+        <div class="row">
+            <!-- Doctor 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" class="doctor-img" alt="Bác sĩ Nguyễn Thị Hương">
+                    <h3 class="doctor-name">Bác sĩ Nguyễn Thị Hương</h3>
+                    <p class="doctor-specialty">Chuyên gia nha chu</p>
+                    <div class="doctor-experience">
+                        <span class="experience-badge">15 năm kinh nghiệm</span>
+                    </div>
+                    <div class="doctor-skills">
+                        <span class="skill-tag">Làm sạch răng</span>
+                        <span class="skill-tag">Điều trị nha chu</span>
+                        <span class="skill-tag">Trám răng</span>
+                        <span class="skill-tag">Nhổ răng</span>
+                    </div>
+                    <button class="btn btn-profile" data-bs-toggle="modal" data-bs-target="#doctorModal1">
+                        <i class="bi bi-person-lines-fill me-2"></i> Xem hồ sơ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Doctor 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d" class="doctor-img" alt="Bác sĩ Trần Văn Minh">
+                    <h3 class="doctor-name">Bác sĩ Trần Văn Minh</h3>
+                    <p class="doctor-specialty">Chuyên gia phục hình răng</p>
+                    <div class="doctor-experience">
+                        <span class="experience-badge">12 năm kinh nghiệm</span>
+                    </div>
+                    <div class="doctor-skills">
+                        <span class="skill-tag">Răng sứ</span>
+                        <span class="skill-tag">Cầu răng</span>
+                        <span class="skill-tag">Mão răng</span>
+                        <span class="skill-tag">Trám thẩm mỹ</span>
+                    </div>
+                    <button class="btn btn-profile" data-bs-toggle="modal" data-bs-target="#doctorModal2">
+                        <i class="bi bi-person-lines-fill me-2"></i> Xem hồ sơ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Doctor 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f" class="doctor-img" alt="Bác sĩ Lê Thị Thu">
+                    <h3 class="doctor-name">Bác sĩ Lê Thị Thu</h3>
+                    <p class="doctor-specialty">Chuyên gia chỉnh nha</p>
+                    <div class="doctor-experience">
+                        <span class="experience-badge">10 năm kinh nghiệm</span>
+                    </div>
+                    <div class="doctor-skills">
+                        <span class="skill-tag">Niềng răng</span>
+                        <span class="skill-tag">Chỉnh nha</span>
+                        <span class="skill-tag">Khí cụ</span>
+                        <span class="skill-tag">Invisalign</span>
+                    </div>
+                    <button class="btn btn-profile" data-bs-toggle="modal" data-bs-target="#doctorModal3">
+                        <i class="bi bi-person-lines-fill me-2"></i> Xem hồ sơ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="department-section">
+    <div class="container">
+        <h2 class="section-title">Bác Sĩ Chuyên Khoa Sâu</h2>
+        <div class="row">
+            <!-- Doctor 4 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d" class="doctor-img" alt="Bác sĩ Phạm Quốc Bảo">
+                    <h3 class="doctor-name">Bác sĩ Phạm Quốc Bảo</h3>
+                    <p class="doctor-specialty">Chuyên gia phẫu thuật</p>
+                    <div class="doctor-experience">
+                        <span class="experience-badge">18 năm kinh nghiệm</span>
+                    </div>
+                    <div class="doctor-skills">
+                        <span class="skill-tag">Nhổ răng khôn</span>
+                        <span class="skill-tag">Cấy ghép Implant</span>
+                        <span class="skill-tag">Phẫu thuật nha chu</span>
+                        <span class="skill-tag">Chỉnh hình xương</span>
+                    </div>
+                    <button class="btn btn-profile" data-bs-toggle="modal" data-bs-target="#doctorModal4">
+                        <i class="bi bi-person-lines-fill me-2"></i> Xem hồ sơ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Doctor 5 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" class="doctor-img" alt="Bác sĩ Hoàng Thị Lan">
+                    <h3 class="doctor-name">Bác sĩ Hoàng Thị Lan</h3>
+                    <p class="doctor-specialty">Chuyên gia trẻ em</p>
+                    <div class="doctor-experience">
+                        <span class="experience-badge">9 năm kinh nghiệm</span>
+                    </div>
+                    <div class="doctor-skills">
+                        <span class="skill-tag">Nha khoa trẻ em</span>
+                        <span class="skill-tag">Dự phòng sâu răng</span>
+                        <span class="skill-tag">Chỉnh nha trẻ em</span>
+                        <span class="skill-tag">Nhổ răng sữa</span>
+                    </div>
+                    <button class="btn btn-profile" data-bs-toggle="modal" data-bs-target="#doctorModal5">
+                        <i class="bi bi-person-lines-fill me-2"></i> Xem hồ sơ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Doctor 6 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="doctor-card">
+                    <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d" class="doctor-img" alt="Bác sĩ Vũ Đình Khôi">
+                    <h3 class="doctor-name">Bác sĩ Vũ Đình Khôi</h3>
+                    <p class="doctor-specialty">Chuyên gia thẩm mỹ</p>
+                    <div class="doctor-experience">
+                        <span class="experience-badge">14 năm kinh nghiệm</span>
+                    </div>
+                    <div class="doctor-skills">
+                        <span class="skill-tag">Tẩy trắng răng</span>
+                        <span class="skill-tag">Dán sứ Veneer</span>
+                        <span class="skill-tag">Phục hình thẩm mỹ</span>
+                        <span class="skill-tag">Nha khoa Hollywood</span>
+                    </div>
+                    <button class="btn btn-profile" data-bs-toggle="modal" data-bs-target="#doctorModal6">
+                        <i class="bi bi-person-lines-fill me-2"></i> Xem hồ sơ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="expertise-section">
+    <div class="container">
+        <h2 class="section-title" style="color: var(--primary)">Chuyên Môn Hàng Đầu</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="expertise-card">
+                    <i class="bi bi-award expertise-icon"></i>
+                    <h4>Đào Tạo Bài Bản</h4>
+                    <p>100% bác sĩ tốt nghiệp từ các trường đại học y danh tiếng trong và ngoài nước</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="expertise-card">
+                    <i class="bi bi-heart-pulse expertise-icon"></i>
+                    <h4>Kinh Nghiệm Lâm Sàng</h4>
+                    <p>Đội ngũ bác sĩ có từ 8-20 năm kinh nghiệm thực tế trong điều trị</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="expertise-card">
+                    <i class="bi bi-shield-check expertise-icon"></i>
+                    <h4>Tiêu Chuẩn An Toàn</h4>
+                    <p>Tuân thủ nghiêm ngặt quy trình vô trùng và an toàn trong điều trị</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <h2 class="mb-3">Bạn muốn được tư vấn bởi bác sĩ chuyên khoa?</h2>
+                <p class="mb-lg-0">Đặt lịch hẹn ngay để được thăm khám bởi đội ngũ bác sĩ giàu kinh nghiệm của chúng tôi</p>
+            </div>
+            <div class="col-lg-4 text-lg-end">
+                <button class="btn btn-light btn-lg rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                    <i class="bi bi-calendar-check me-2"></i> Đặt lịch ngay
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <!-- About Us -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp">
+                <h4 class="text-primary">DentalCare</h4>
+                <p>Đối tác đáng tin cậy cho sức khỏe răng miệng và nụ cười rạng rỡ.</p>
+                <div class="social-links">
+                    <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="me-3"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.2s">
+                <h5 class="text-secondary">Liên Kết Nhanh</h5>
+                <ul class="list-unstyled">
+                    <li><a href="vechungtoi.html"><i class="bi bi-chevron-right"></i> Về Chúng Tôi</a></li>
+                    <li><a href="dichvu.html"><i class="bi bi-chevron-right"></i> Dịch Vụ</a></li>
+                    <li><a href="bacsi.html"><i class="bi bi-chevron-right"></i> Đội Ngũ Bác Sĩ</a></li>
+                    <li><a href="blog.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-lg-4 animate__animated animate__fadeInUp" data-wow-delay="0.4s">
+                <h5 class="text-secondary">Thông Tin Liên Hệ</h5>
+                <ul class="list-unstyled">
+                    <li><i class="bi bi-geo-alt"></i> 123 Đường Nha Khoa, Thành Phố</li>
+                    <li><i class="bi bi-telephone"></i> +1 234 567 890</li>
+                    <li><i class="bi bi-envelope"></i> info@dentalcare.com</li>
+                    <li><i class="bi bi-clock"></i> Thứ 2 - Thứ 6: 8:00 - 18:00</li>
+                    <li><i class="bi bi-clock"></i> Thứ 7: 8:00 - 12:00</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-5">
+            <div class="col-lg-12 text-center">
+                <p class="mb-0">© 2024 DentalCare. Bảo lưu mọi quyền.</p>
+                <p class="mb-0">Được thiết kế với <i class="bi bi-heart-fill text-danger"></i> bởi <a href="#" class="text-primary">DentalCare Team</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Doctor Modals -->
+<!-- Modal 1 -->
+<div class="modal fade" id="doctorModal1" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hồ Sơ Bác Sĩ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" class="img-fluid rounded-circle mb-3" alt="Bác sĩ Nguyễn Thị Hương" style="width: 200px; height: 200px; object-fit: cover;">
+                        <h4>Bác sĩ Nguyễn Thị Hương</h4>
+                        <p class="text-primary">Chuyên gia nha chu</p>
+                        <div class="d-flex justify-content-center gap-2 mb-3">
+                            <span class="badge bg-primary">15 năm kinh nghiệm</span>
+                            <span class="badge bg-secondary">Bệnh viện Răng Hàm Mặt TW</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 class="border-bottom pb-2">Thông Tin Chuyên Môn</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><strong>Học vị:</strong> Tiến sĩ Nha khoa - Đại học Y Hà Nội</li>
+                            <li class="mb-2"><strong>Chứng chỉ:</strong> Chuyên khoa Nha chu - Đại học Paris Descartes</li>
+                            <li class="mb-2"><strong>Kinh nghiệm:</strong> 
+                                <ul>
+                                    <li>Trưởng khoa Nha chu - Bệnh viện Răng Hàm Mặt TW (2015-2020)</li>
+                                    <li>Bác sĩ điều trị tại Phòng khám Nha khoa Quốc tế (2010-2015)</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Chuyên môn:</strong> Điều trị nha chu, ghép xương, ghép nướu, làm sạch răng chuyên sâu</li>
+                            <li class="mb-2"><strong>Ngôn ngữ:</strong> Tiếng Việt, Tiếng Anh, Tiếng Pháp</li>
+                        </ul>
+                        
+                        <h5 class="border-bottom pb-2 mt-4">Thành Tựu</h5>
+                        <ul>
+                            <li>Giải thưởng "Bác sĩ nha khoa xuất sắc" năm 2019</li>
+                            <li>Nghiên cứu về điều trị nha chu không phẫu thuật đăng trên tạp chí quốc tế</li>
+                            <li>Diễn giả tại nhiều hội thảo nha khoa trong nước và quốc tế</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 2 -->
+<div class="modal fade" id="doctorModal2" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hồ Sơ Bác Sĩ</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d" class="img-fluid rounded-circle mb-3" alt="Bác sĩ Trần Văn Minh" style="width: 200px; height: 200px; object-fit: cover;">
+                        <h4>Bác sĩ Trần Văn Minh</h4>
+                        <p class="text-primary">Chuyên gia phục hình răng</p>
+                        <div class="d-flex justify-content-center gap-2 mb-3">
+                            <span class="badge bg-primary">12 năm kinh nghiệm</span>
+                            <span class="badge bg-secondary">Đại học Y Dược TP.HCM</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h5 class="border-bottom pb-2">Thông Tin Chuyên Môn</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><strong>Học vị:</strong> Thạc sĩ Nha khoa - Đại học Y Dược TP.HCM</li>
+                            <li class="mb-2"><strong>Chứng chỉ:</strong> Phục hình răng thẩm mỹ - Đại học Harvard</li>
+                            <li class="mb-2"><strong>Kinh nghiệm:</strong> 
+                                <ul>
+                                    <li>Giảng viên Bộ môn Phục hình - Đại học Y Dược TP.HCM</li>
+                                    <li>Bác sĩ điều trị tại Bệnh viện Răng Hàm Mặt TP.HCM</li>
+                                </ul>
+                            </li>
+                            <li class="mb-2"><strong>Chuyên môn:</strong> Răng sứ thẩm mỹ, cầu răng, mão răng, phục hình implant</li>
+                            <li class="mb-2"><strong>Ngôn ngữ:</strong> Tiếng Việt, Tiếng Anh</li>
+                        </ul>
+                        
+                        <h5 class="border-bottom pb-2 mt-4">Thành Tựu</h5>
+                        <ul>
+                            <li>Tiên phong ứng dụng công nghệ CAD/CAM trong phục hình răng</li>
+                            <li>Đào tạo hơn 100 bác sĩ về phục hình răng thẩm mỹ</li>
+                            <li>Nhận giải "Sáng tạo trong nha khoa" năm 2020</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
